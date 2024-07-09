@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8"/>
+	<title>Vorici Chromatic Calculator</title>
+	<meta name="description" content="Path of Exile chromatic cost calculator for Vorici master crafting and raw chromatic orbs." />
+	<link rel="stylesheet" type="text/css" href="poestyle.min.css"/>
+	<link rel="icon" type="image/png" href="Chromatic_Orb.png"/>
+</head>
+<body><div class="wrapper">
+	<div class="core">
+		<h1><a style="color: #EEEEEE; text-decoration: none;" href="http://siveran.github.io/calc.html">Vorici Chromatic Calculator</a></h1>
+		<hr>
+		<div class="form">
+			<table class="formTable">
+					<tr class="formRow socks">
+						<td class="rowTitle">Total Sockets</td>
+						<td class="rowField">
+							<input id="sockets" class="entry white" placeholder="#"></input>
+						</td>
+						<td class="rowField"></td>
+					</tr>
+					<tr class="formRow reqs">
+						<td class="rowTitle">Requirements</td>
+						<td class="rowField">
+							<input id="str" class="entry red " placeholder="str"></input>
+						</td>
+						<td class="rowField">
+							<input id="dex" class="entry green " placeholder="dex"></input>
+						</td>
+						<td class="rowField">
+							<input id="int" class="entry blue " placeholder="int"></input>
+						</td>
+						<td class="accept">
+							<button id="calcButton" class="go">Calculate</button>
+						</td>
+					</tr>
+					<tr class="formRow colors">
+						<td class="rowTitle">Desired Colors</td>
+						<td class="rowField">
+							<input id="red" class="entry red" placeholder="R"></input>
+						</td>
+						<td class="rowField">
+							<input id="green" class="entry green" placeholder="G"></input>
+						</td>
+						<td class="rowField">
+							<input id="blue" class="entry blue" placeholder="B"></input>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		<hr>
+		<div class="results">
+			<table class="result sortable" id="result">
+				<thead>
+					<tr class="prob">
+						<th>Craft Type</th>
+						<th>Average Cost<br><span class="tablesubtitle">(in chromatics)</span></th>
+						<th>Success Chance</th>
+						<th>Average Attempts<br><span class="tablesubtitle">(mean)</span></th>
+						<th>Cost per Try<br><span class="tablesubtitle">(in chromatics)</span></th>
+						<th>Std. Deviation<br><span class="tablesubtitle">(of attempts)</span></th>
+					</tr>
+				</thead>
+				<tbody id="resultbody">
+					
+				</tbody>
+				<tbody id="recycle">
+					
+				</tbody>
+			</table>
+		</div>
+		<div class="etc">
+		<hr>
+			<br>
+			<span style="font-weight:bold;">Note: Chromatic orbs cannot reroll the same color permutation twice, so the chromatic success chance is always higher than the drop rate.</span>
+			<br>For mono-requirement items, on-color: 0.9 * (R + 10) / (R + 20)
+			<br>For mono-requirement items, off-color: 0.05 + 4.5 / (R + 20)
+			<br>For dual-requirement items, on-color: 0.9 * R1 / (R1 + R2)
+			<br>For dual-requirement items, off-color: 10% flat chance, regardless of requirements
+			<br>The formulas and color chances given are not guaranteed to be right (but I tried!)
+			<br>Questions, comments, or want to contribute data? Post on <a href="http://www.reddit.com/r/pathofexile/comments/2kjcxe/vorici_chromatic_calculator_updated_with_new/">Reddit</a>.
+			<br>&nbsp;&nbsp;&nbsp;<a href="https://github.com/Siveran/siveran.github.io/commits/master">Changelog</a> | <a href="https://github.com/Siveran/siveran.github.io">Source Code</a> | <a href="poedata3.csv">Item Data</a>
+			<br>Made by <a href="http://www.pathofexile.com/account/view-profile/Siveran">Siveran</a>. Last updated Aug 4, 2017.
+			<br>CC0 2017
+		</div>
+	</div>
+
+	<script src="SortTable.min.js"></script>
+	<script src="PoEChromaticCalc.js"></script>
+</div></body>
+</html>
