@@ -1,145 +1,150 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8">
+<head>
+    <meta charset="utf-8"/>
+    <title>Combined Tools for Path of Exile</title>
+    <meta name="description" content="Combined tools for Path of Exile: Vorici Chromatic Calculator and Blight Helper." />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="theme-color" content="#A08C4A">
-
-    <title>Path of Exile - Blight Helper</title>
-    <meta name="description" content="A helper for Path of Exile's Blight League.">
-    <meta property="og:title" content="Path of Exile - Blight Helper">
-    <meta property="og:description" content="A helper for Path of Exile's Blight League.">
-    <meta property="og:image" content="https://blight.raelys.com/img/oils/golden_oil.png">
-
-    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
-    <link rel="icon" href="favicon.ico" type="image/x-icon">
-
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
       integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="poestyle.min.css"/>
     <link rel="stylesheet" href="css/style.css" type="text/css">
-
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js"
-      integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
-      integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-      integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.0"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.15/lodash.min.js"></script>
-  </head>
-  <body>
-    <div class="container-fluid" id="app">
-      <div class="row mt-3">
-        <div class="col-12 col-lg-5 col-xl-4 offset-xl-1">
-          <div class="d-flex flex-column align-items-center">
-            <div class="anointing px-3 py-2">
-              <h1 class="text-center">{{ _.capitalize(type) }} Anointing</h1>
-              <div class="d-flex justify-content-center my-3">
-                <img v-on:click="setType('amulet')" src="img/amulet.png" alt="Anoint Amulet" class="type-select"
-                  :class="type === 'amulet' ? '' : 'faded'">
-                <img v-on:click="setType('ring')" src="img/ring.png" alt="Anoint Ring" class="type-select"
-                  :class="type === 'ring' ? '' : 'faded'">
-                <img v-on:click="setType('map')" src="img/map.png" alt="Anoint Map" class="type-select"
-                  :class="type === 'map' ? '' : 'faded'">
-                <img v-on:click="setType('ravaged')" src="img/ravaged.png" alt="Anoint Ravaged Map" class="type-select"
-                  :class="type === 'ravaged' ? '' : 'faded'">
-              </div>
-              <div class="d-flex flex-wrap justify-content-center oil-select">
-                <div v-for="(oil, i) in combo" class="boxed">
-                  <img v-on:click="removeOil(i)" :src="oil.image" :alt="oil.name" :title="oil.name"
-                    data-toggle="tooltip" class="oil">
+    <link rel="icon" type="image/png" href="Chromatic_Orb.png"/>
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <!-- Vorici Chromatic Calculator Section -->
+            <div class="col-12 col-lg-6">
+                <div class="wrapper">
+                    <div class="core">
+                        <h1><a style="color: #EEEEEE; text-decoration: none;" href="http://siveran.github.io/calc.html">Vorici Chromatic Calculator</a></h1>
+                        <hr>
+                        <div class="form">
+                            <table class="formTable">
+                                <tr class="formRow socks">
+                                    <td class="rowTitle">Total Sockets</td>
+                                    <td class="rowField">
+                                        <input id="sockets" class="entry white" placeholder="#"></input>
+                                    </td>
+                                    <td class="rowField"></td>
+                                </tr>
+                                <tr class="formRow reqs">
+                                    <td class="rowTitle">Requirements</td>
+                                    <td class="rowField">
+                                        <input id="str" class="entry red " placeholder="str"></input>
+                                    </td>
+                                    <td class="rowField">
+                                        <input id="dex" class="entry green " placeholder="dex"></input>
+                                    </td>
+                                    <td class="rowField">
+                                        <input id="int" class="entry blue " placeholder="int"></input>
+                                    </td>
+                                    <td class="accept">
+                                        <button id="calcButton" class="go">Calculate</button>
+                                    </td>
+                                </tr>
+                                <tr class="formRow colors">
+                                    <td class="rowTitle">Desired Colors</td>
+                                    <td class="rowField">
+                                        <input id="red" class="entry red" placeholder="R"></input>
+                                    </td>
+                                    <td class="rowField">
+                                        <input id="green" class="entry green" placeholder="G"></input>
+                                    </td>
+                                    <td class="rowField">
+                                        <input id="blue" class="entry blue" placeholder="B"></input>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                        <hr>
+                        <div class="results">
+                            <table class="result sortable" id="result">
+                                <thead>
+                                    <tr class="prob">
+                                        <th>Craft Type</th>
+                                        <th>Average Cost<br><span class="tablesubtitle">(in chromatics)</span></th>
+                                        <th>Success Chance</th>
+                                        <th>Average Attempts<br><span class="tablesubtitle">(mean)</span></th>
+                                        <th>Cost per Try<br><span class="tablesubtitle">(in chromatics)</span></th>
+                                        <th>Std. Deviation<br><span class="tablesubtitle">(of attempts)</span></th>
+                                    </tr>
+                                </thead>
+                                <tbody id="resultbody">
+                                    
+                                </tbody>
+                                <tbody id="recycle">
+                                    
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="etc">
+                            <hr>
+                            <br>
+                            <span style="font-weight:bold;">Note: Chromatic orbs cannot reroll the same color permutation twice, so the chromatic success chance is always higher than the drop rate.</span>
+                            <br>For mono-requirement items, on-color: 0.9 * (R + 10) / (R + 20)
+                            <br>For mono-requirement items, off-color: 0.05 + 4.5 / (R + 20)
+                            <br>For dual-requirement items, on-color: 0.9 * R1 / (R1 + R2)
+                            <br>For dual-requirement items, off-color: 10% flat chance, regardless of requirements
+                            <br>The formulas and color chances given are not guaranteed to be right (but I tried!)
+                            <br>Questions, comments, or want to contribute data? Post on <a href="http://www.reddit.com/r/pathofexile/comments/2kjcxe/vorici_chromatic_calculator_updated_with_new/">Reddit</a>.
+                            <br>&nbsp;&nbsp;&nbsp;<a href="https://github.com/Siveran/siveran.github.io/commits/master">Changelog</a> | <a href="https://github.com/Siveran/siveran.github.io">Source Code</a> | <a href="poedata3.csv">Item Data</a>
+                            <br>Made by <a href="http://www.pathofexile.com/account/view-profile/Siveran">Siveran</a>. Last updated Aug 4, 2017.
+                            <br>CC0 2017
+                        </div>
+                    </div>
+                    <script src="SortTable.min.js"></script>
+                    <script src="PoEChromaticCalc.js"></script>
                 </div>
-                <div v-for="n in (maxOils - combo.length)" class="boxed"></div>
-              </div>
             </div>
-            <div class="anointment mt-3 p-3 w-100">
-              <div v-if="anointment !== undefined">
-                <div>
-                  <h3 class="name">
-                    <img v-if="type === 'ring'":src="anointment.image" class="icon">
-                    {{ isMapType() ? 'Blighted Map Modifiers' : anointment.name }}
-                  </h3>
-                  <p v-html="anointment.description" class="description mb-0"></p>
-                </div>
-              </div>
-            </div>
-            <div class="d-flex flex-wrap justify-content-center mx-xl-5">
-              <div v-for="oil in oils" class="boxed">
-                <img v-on:click="addOil(oil)" :src="oil.image" :alt="oil.name" class="oil"
-                  :title="`<b>${oil.name}</b><br>Drop Level: ${oil.level}`" data-toggle="tooltip" data-html="true">
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-12 col-lg-5 offset-lg-1 col-xl-6 mt-4 mt-lg-0 mx-auto">
-          <div class="d-flex align-items-center mb-2">
-            <input type="text" name="search" v-model="search" placeholder="Search by name or description..." class="flex-grow-1">
-            <button type="button" class="btn btn-sm ml-4" v-on:click="reset()">Reset All</button>
-          </div>
-          <p class="text-center mb-0">
-            Input your oils below to see which anointments are available (vendor recipe included.)
-          </p>
-          <div class="my-oils d-flex flex-wrap justify-content-center">
-            <div v-for="(oil, i) in oils" class="d-flex flex-column align-items-center mt-2">
-              <label :for="`oil-${i}`">
-                <img :src="oil.image" :alt="oil.name" :title="oil.name" data-toggle="tooltip">
-              </label>
-              <input type="number" name="`oil-${i}`" min="0" max="999" :id="`oil-${i}`" v-model="myOils[i]"
-                onClick="this.select()">
-            </div>
-          </div>
-          <div class="tower-select d-flex flex-wrap justify-content-center" :class="type === 'ring' ? '' : 'hidden'">
-            <div v-for="group in _.chunk(towers, 3)">
-              <img v-for="tower in group" v-on:click="search = tower.name" :src="tower.image" class="icon"
-                :title="`<b>${tower.name}</b><br>${tower.description}`" data-toggle="tooltip" data-html="true">
-            </div>
-          </div>
-          <div class="table-data mt-3" :class="type === 'ring' ? 'short' : ''">
-            <anointments-table :anointments="anointments" :type="type" :search="search" :my-oils="myOils">
-          </div>
-        </div>
-      </div>
-    </div>
-  </body>
-  <footer>
-    <span>Created by Raelys (v3.24) — </span>
-    <div>
-      <svg xmlns="http://www.w3.org/2000/svg" width="30" height="20">
-        <rect width="30" height="20" fill="#005BBB"/>
-        <rect width="30" height="10" y="10" fill="#FFD500"/>
-      </svg>
-      <span>Слава Україні</span>
-    </div>
-    <a href="https://github.com/mattantonelli/poe-blight" target="_blank">
-      <img src="img/github.png" alt="https://github.com/mattantonelli/poe-blight" class="github">
-    </a>
-  </footer>
-</html>
-
-<script type="text/x-template" id="anointments-table">
-  <table class="table table-bordered table-sm mb-0">
-    <thead>
-      <tr>
-        <th scope="col" v-on:click="sortBy('name')" v-html="sortHeader('Name')"></th>
-        <th scope="col" v-on:click="sortBy('description')" v-html="sortHeader('Description')"></th>
-        <th scope="col" v-if="!isMapType()">Oils</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr v-for="anointment in searchResults">
-        <td class="name">
-          <div class="d-flex align-items-center h-100">
-            <img v-if="type !== 'amulet'" :src="anointment.image" class="icon mr-2">
-            <a href="#" @click.prevent="setCombo(anointment)">{{ anointment.name }}</a>
-          </div>
-        </td>
-        <td class="description" v-html="formatDescription(anointment)"></td>
-        <td class="oils" v-if="!isMapType()">
-          <img v-for="oil in anointment.combo" :src="oil.image" :alt="oil.name" :title="oil.name" data-toggle="tooltip">
-        </td>
-      </tr>
-    </tbody>
-  </table>
-</script>
-
-<script src="js/app.js"></script>
+            
+            <!-- Blight Helper Section -->
+            <div class="col-12 col-lg-6">
+                <div id="app">
+                    <div class="row mt-3">
+                        <div class="col-12 col-lg-5 col-xl-4 offset-xl-1">
+                            <div class="d-flex flex-column align-items-center">
+                                <div class="anointing px-3 py-2">
+                                    <h1 class="text-center">{{ _.capitalize(type) }} Anointing</h1>
+                                    <div class="d-flex justify-content-center my-3">
+                                        <img v-on:click="setType('amulet')" src="img/amulet.png" alt="Anoint Amulet" class="type-select"
+                                            :class="type === 'amulet' ? '' : 'faded'">
+                                        <img v-on:click="setType('ring')" src="img/ring.png" alt="Anoint Ring" class="type-select"
+                                            :class="type === 'ring' ? '' : 'faded'">
+                                        <img v-on:click="setType('map')" src="img/map.png" alt="Anoint Map" class="type-select"
+                                            :class="type === 'map' ? '' : 'faded'">
+                                        <img v-on:click="setType('ravaged')" src="img/ravaged.png" alt="Anoint Ravaged Map" class="type-select"
+                                            :class="type === 'ravaged' ? '' : 'faded'">
+                                    </div>
+                                    <div class="d-flex flex-wrap justify-content-center oil-select">
+                                        <div v-for="(oil, i) in combo" class="boxed">
+                                            <img v-on:click="removeOil(i)" :src="oil.image" :alt="oil.name" :title="oil.name"
+                                                data-toggle="tooltip" class="oil">
+                                        </div>
+                                        <div v-for="n in (maxOils - combo.length)" class="boxed"></div>
+                                    </div>
+                                </div>
+                                <div class="anointment mt-3 p-3 w-100">
+                                    <div v-if="anointment !== undefined">
+                                        <div>
+                                            <h3 class="name">
+                                                <img v-if="type === 'ring'":src="anointment.image" class="icon">
+                                                {{ isMapType() ? 'Blighted Map Modifiers' : anointment.name }}
+                                            </h3>
+                                            <p v-html="anointment.description" class="description mb-0"></p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="d-flex flex-wrap justify-content-center mx-xl-5">
+                                    <div v-for="oil in oils" class="boxed">
+                                        <img v-on:click="addOil(oil)" :src="oil.image" :alt="oil.name" class="oil"
+                                            :title="`<b>${oil.name}</b><br>Drop Level: ${oil.level}`" data-toggle="tooltip" data-html="true">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 col-lg-5 offset-lg-1 col-xl-6 mt-4 mt
